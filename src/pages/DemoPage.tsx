@@ -374,7 +374,7 @@ const DemoPage: React.FC = () => {
             <h3 className={`text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-900'} mb-4 transition-colors duration-300`}>Ready to implement Servio in your restaurant?</h3>
             <div className="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4">
               <a 
-                href="/contact" 
+                href="/Contact" 
                 className={`${darkMode ? 'bg-indigo-700 hover:bg-indigo-800' : 'bg-indigo-600 hover:bg-indigo-700'} text-white px-6 py-3 rounded-lg font-medium text-lg shadow-md transition duration-300`}
               >
                 Contact Sales
