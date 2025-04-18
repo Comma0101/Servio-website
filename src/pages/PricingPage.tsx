@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import Layout from '../components/layout/Layout';
 import { motion } from 'framer-motion';
 import { CheckIcon } from '@heroicons/react/24/outline';
+import { ThemeContext } from '../context/ThemeContext';
 
 const plans = [
   {
@@ -82,15 +83,21 @@ const faqs = [
 ];
 
 const PricingPage: React.FC = () => {
-  const [annual, setAnnual] = useState(false);
+  const { darkMode } = useContext(ThemeContext);
+  const [tab, setTab] = useState<'monthly'|'annual'|'trial'>('trial');
   
   return (
     <Layout>
+      {/* Top Banner */}
+      <div className="w-full bg-gradient-to-r from-indigo-600 to-purple-600 py-10 text-center">
+        <h2 className="text-4xl md:text-5xl font-extrabold text-white mb-2">Try Servio FREE for 3 months</h2>
+        <p className="text-xl md:text-2xl text-indigo-100 font-medium">Book a 15-min call & start free today &rarr;</p>
+      </div>
       {/* Hero Section */}
-      <div className="bg-gradient-to-r from-indigo-600 to-purple-600 text-white py-20">
+      <div className={`py-14 ${darkMode ? 'bg-dark-bg' : 'bg-black'} text-white font-display relative`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.h1 
-            className="text-4xl md:text-5xl font-bold mb-6"
+            className="text-5xl md:text-6xl font-extrabold mb-4 tracking-tight drop-shadow-xl font-display"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
@@ -98,96 +105,93 @@ const PricingPage: React.FC = () => {
             Simple, Transparent Pricing
           </motion.h1>
           <motion.p 
-            className="text-xl max-w-3xl mx-auto mb-8"
+            className="text-2xl max-w-3xl mx-auto mb-10 font-medium opacity-90 font-sans"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
           >
-            Choose the plan that's right for your restaurant
+            Choose the plan that’s right for your réaurant
           </motion.p>
-          
-          {/* Billing toggle */}
-          <motion.div 
-            className="flex justify-center items-center space-x-4 mb-12"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-          >
-            <span className={`text-lg ${!annual ? 'text-white' : 'text-indigo-200'}`}>Monthly</span>
-            <button 
-              onClick={() => setAnnual(!annual)}
-              className="relative inline-flex h-6 w-12 items-center rounded-full bg-indigo-300"
-            >
-              <span className="sr-only">Toggle billing frequency</span>
-              <span
-                className={`inline-block h-4 w-4 transform rounded-full bg-white transition ${
-                  annual ? 'translate-x-6' : 'translate-x-1'
-                }`}
-              />
-            </button>
-            <span className={`text-lg ${annual ? 'text-white' : 'text-indigo-200'}`}>
-              Annual <span className="text-sm font-medium bg-indigo-500 px-2 py-1 rounded-full">Save 20%</span>
-            </span>
-          </motion.div>
         </div>
       </div>
-      
       {/* Pricing Cards */}
-      <div className="py-16 bg-gray-50">
+      <div className={`py-16 ${darkMode ? 'bg-dark-bg' : 'bg-gray-50'} font-sans`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {plans.map((plan, index) => (
-              <motion.div 
-                key={index}
-                className={`bg-white rounded-lg shadow-lg overflow-hidden ${
-                  plan.popular ? 'ring-2 ring-indigo-600 relative' : ''
-                }`}
-                initial={{ opacity: 0, y: 50 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-              >
-                {plan.popular && (
-                  <div className="absolute top-0 right-0 bg-indigo-600 text-white px-4 py-1 text-sm font-medium">
-                    Most Popular
+            {/* Starter Column: Stacked Cards */}
+            <div className="flex flex-col gap-4 h-full">
+              {/* Starter Plan Card */}
+              <div className={`rounded-2xl shadow-2xl overflow-hidden border-4 border-gray-100 dark:border-gray-800 bg-dark-card p-8 flex flex-col justify-between flex-1`}>
+                <div>
+                  <div className="flex items-center gap-2 mb-4">
+                    <span className="text-base font-semibold text-indigo-100">Starter</span>
                   </div>
-                )}
-                <div className="p-6">
-                  <h3 className="text-2xl font-bold text-gray-900 mb-2">{plan.name}</h3>
-                  <p className="text-gray-600 mb-4">{plan.description}</p>
-                  <div className="mb-6">
-                    <span className="text-4xl font-bold text-gray-900">${annual ? plan.price.annual : plan.price.monthly}</span>
-                    <span className="text-gray-600">/month</span>
-                    {annual && <p className="text-sm text-gray-500">Billed annually</p>}
-                  </div>
-                  <ul className="space-y-3 mb-6">
-                    {plan.features.map((feature, i) => (
-                      <li key={i} className="flex items-start">
-                        <CheckIcon className="h-5 w-5 text-green-500 mr-2 flex-shrink-0" />
-                        <span className="text-gray-600">{feature}</span>
-                      </li>
-                    ))}
+                  <div className="text-lg text-indigo-100 mb-3">For small restaurants just getting started with AI ordering</div>
+                  <div className="text-3xl font-bold text-white mb-2">Up to 50 orders/mo</div>
+                  <ul className="space-y-2 mb-6 text-indigo-100 list-none pl-0">
+                    <li>Text & Clover integration</li>
+                    <li>Basic analytics</li>
                   </ul>
-                  <button 
-                    className={`w-full py-3 px-4 rounded-lg font-medium ${
-                      plan.popular 
-                        ? 'bg-indigo-600 text-white hover:bg-indigo-700' 
-                        : 'bg-gray-100 text-gray-900 hover:bg-gray-200'
-                    } transition duration-300`}
-                  >
-                    {plan.cta}
-                  </button>
                 </div>
-              </motion.div>
-            ))}
+                <button
+                  className="w-full mt-6 py-3 px-4 rounded-xl font-bold text-xl font-display bg-gradient-to-r from-indigo-500 to-purple-600 text-white hover:from-indigo-600 hover:to-purple-700 ring-2 ring-indigo-900 transition duration-300"
+                  onClick={() => window.location.href = '/contact'}
+                >Get Trial</button>
+              </div>
+            </div>
+            {/* Professional Card */}
+            <div className={`rounded-2xl shadow-2xl overflow-hidden border-4 ring-2 ring-indigo-600 relative border-indigo-300 dark:border-indigo-900 bg-dark-card p-8 flex flex-col justify-between`}> 
+              <div>
+                <div className="flex items-center gap-2 mb-4">
+                  <span className="text-base font-semibold text-indigo-100">Professional</span>
+                  <span className="ml-3 px-3 py-1 absolute top-6 right-6 rounded-full bg-indigo-600 text-white text-xs font-bold">Most Popular</span>
+                </div>
+                <div className="text-lg text-indigo-100 mb-3">Ideal for growing restaurants with higher order volume</div>
+                <div className="text-4xl font-extrabold text-white mb-1">$0 <span className="text-lg font-medium">for 3 months</span></div>
+                <div className="text-lg text-indigo-200 mb-2">then $99/mo</div>
+                <ul className="space-y-2 mb-6 text-indigo-100 list-none pl-0">
+                  <li>Up to 2,000 orders/mo</li>
+                  <li>Text & voice ordering</li>
+                  <li>Square & Clover Integration</li>
+                  <li>Advanced analytics</li>
+                  <li>Automated promotions</li>
+                  <li>Custom response templates</li>
+                </ul>
+              </div>
+              <button
+                className="w-full mt-6 py-3 px-4 rounded-xl font-bold text-xl font-display bg-gradient-to-r from-indigo-500 to-purple-600 text-white hover:from-indigo-600 hover:to-purple-700 ring-2 ring-indigo-900 transition duration-300"
+                onClick={() => window.location.href = '/contact'}
+              >Get Trial</button>
+            </div>
+            {/* Enterprise Card */}
+            <div className={`rounded-2xl shadow-2xl overflow-hidden border-4 border-gray-100 dark:border-gray-800 bg-dark-card p-8 flex flex-col justify-between`}>
+              <div>
+                <div className="flex items-center gap-2 mb-4">
+                  <span className="text-base font-semibold text-indigo-100">Enterprise</span>
+                </div>
+                <div className="text-lg text-indigo-100 mb-3">For high volume restaurants needing full service solutions</div>
+                <div className="text-2xl font-bold text-white mb-2">Contact us</div>
+                <ul className="space-y-2 mb-6 text-indigo-100 list-none pl-0">
+                  <li>All ordering channels</li>
+                  <li>All POS integrations</li>
+                  <li>Custom analytics reports</li>
+                  <li>Detailed performance tracking</li>
+                  <li>Dedicated account manager</li>
+                </ul>
+              </div>
+              <button
+                className="w-full mt-6 py-3 px-4 rounded-xl font-bold text-xl font-display bg-white text-indigo-700 border-2 border-indigo-700 hover:bg-indigo-50 transition duration-300"
+                onClick={() => window.location.href = '/contact'}
+              >Contact Sales</button>
+            </div>
           </div>
         </div>
       </div>
-      
       {/* FAQs */}
-      <div className="py-16 bg-white">
+      <div className={`py-16 ${darkMode ? 'bg-dark-secondary' : 'bg-white'} font-sans`}>
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.h2 
-            className="text-3xl font-bold text-gray-900 mb-12 text-center"
+            className={`text-4xl font-extrabold mb-12 text-center font-display tracking-tight ${darkMode ? 'text-indigo-200' : 'text-gray-900'}`}
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -195,30 +199,28 @@ const PricingPage: React.FC = () => {
           >
             Frequently Asked Questions
           </motion.h2>
-          
           <div className="space-y-8">
             {faqs.map((faq, index) => (
               <motion.div 
                 key={index}
-                className="border-b border-gray-200 pb-6"
+                className={`border-b pb-6 ${darkMode ? 'border-gray-700' : 'border-gray-200'}`}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
               >
-                <h3 className="text-xl font-semibold text-gray-900 mb-2">{faq.question}</h3>
-                <p className="text-gray-600">{faq.answer}</p>
+                <h3 className={`text-2xl font-bold mb-2 font-display ${darkMode ? 'text-indigo-100' : 'text-gray-900'}`}>{faq.question}</h3>
+                <p className={`${darkMode ? 'text-gray-300' : 'text-gray-600'} font-sans`}>{faq.answer}</p>
               </motion.div>
             ))}
           </div>
         </div>
       </div>
-      
       {/* CTA Section */}
-      <div className="bg-indigo-50 py-16">
+      <div className={`py-16 ${darkMode ? 'bg-dark-bg' : 'bg-indigo-50'} font-display`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.h2 
-            className="text-3xl font-bold text-gray-900 mb-6"
+            className={`text-4xl font-extrabold mb-6 tracking-tight font-display ${darkMode ? 'text-indigo-200' : 'text-gray-900'}`}
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -227,7 +229,7 @@ const PricingPage: React.FC = () => {
             Still have questions?
           </motion.h2>
           <motion.p 
-            className="text-xl text-gray-600 mb-8 max-w-3xl mx-auto"
+            className={`text-2xl mb-8 max-w-3xl mx-auto font-medium opacity-90 font-sans ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -244,13 +246,13 @@ const PricingPage: React.FC = () => {
           >
             <a 
               href="/contact" 
-              className="bg-indigo-600 text-white hover:bg-indigo-700 px-6 py-3 rounded-lg font-medium text-lg shadow-md transition duration-300"
+              className={`bg-gradient-to-r from-indigo-500 to-purple-600 text-white hover:from-indigo-600 hover:to-purple-700 px-8 py-4 rounded-xl font-bold text-2xl shadow-xl transition duration-300 font-display ${darkMode ? 'ring-2 ring-indigo-900' : ''}`}
             >
               Contact Sales
             </a>
             <a 
-              href="/demo" 
-              className="bg-white text-indigo-600 border border-indigo-600 hover:bg-indigo-50 px-6 py-3 rounded-lg font-medium text-lg transition duration-300"
+              href="/contact" 
+              className={`bg-white text-indigo-600 border border-indigo-600 hover:bg-indigo-50 px-8 py-4 rounded-xl font-bold text-2xl transition duration-300 font-display ${darkMode ? 'bg-dark-secondary text-indigo-200 border-indigo-900 hover:bg-dark-bg' : ''}`}
             >
               Schedule a Demo
             </a>

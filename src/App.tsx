@@ -13,7 +13,7 @@ import DemoPage from './pages/DemoPage';
 function App() {
   return (
     <ThemeProvider>
-      <Router>
+      <Router basename="/Servio-website/">
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/features" element={<FeaturesPage />} />

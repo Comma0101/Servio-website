@@ -79,7 +79,7 @@ const Hero: React.FC = () => {
             </div>
 
             <motion.p 
-              className={`text-xl md:text-2xl mb-8 font-light leading-relaxed ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}
+              className={`text-xl md:text-2xl mb-8 font-semibold leading-relaxed ${darkMode ? 'text-gray-100' : 'text-gray-800'}`}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.8, duration: 0.8 }}
@@ -110,7 +110,7 @@ const Hero: React.FC = () => {
                 variant="outline"
                 size="lg"
               >
-                Contact Sales
+                Free 3-Month Trial
               </Button>
             </motion.div>
 

@@ -40,7 +40,7 @@ const CTA: React.FC = () => {
             transition={{ duration: 0.5, delay: 0.2 }}
           >
             <Link 
-              to="/demo" 
+              to="/contact" 
               className={`${darkMode 
                 ? 'bg-indigo-200 text-indigo-900 hover:bg-white' 
                 : 'bg-white text-indigo-600 hover:bg-indigo-50'} 

@@ -1,6 +1,8 @@
 import React from 'react';
 import Layout from '../components/layout/Layout';
 import { motion } from 'framer-motion';
+import { useContext } from 'react';
+import { ThemeContext } from '../context/ThemeContext';
 
 const features = [
   {
@@ -42,13 +44,14 @@ const features = [
 ];
 
 const FeaturesPage: React.FC = () => {
+  const { darkMode } = useContext(ThemeContext);
   return (
     <Layout>
       {/* Hero Section */}
-      <div className="bg-gradient-to-r from-indigo-600 to-purple-600 text-white py-20">
+      <div className={`bg-gradient-to-r from-indigo-600 to-purple-600 ${darkMode ? 'text-white' : 'text-white'} py-20 font-display`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.h1 
-            className="text-4xl md:text-5xl font-bold mb-6"
+            className="text-5xl md:text-6xl font-extrabold mb-6 tracking-tight drop-shadow-xl font-display"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
@@ -56,7 +59,7 @@ const FeaturesPage: React.FC = () => {
             Powerful Features for Modern Restaurants
           </motion.h1>
           <motion.p 
-            className="text-xl max-w-3xl mx-auto"
+            className="text-2xl max-w-3xl mx-auto font-medium opacity-90 font-sans"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
@@ -65,15 +68,14 @@ const FeaturesPage: React.FC = () => {
           </motion.p>
         </div>
       </div>
-      
       {/* Features Detail */}
-      <div className="py-16">
+      <div className={`py-16 ${darkMode ? 'bg-dark-bg' : ''} font-sans`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="space-y-24">
             {features.map((feature, index) => (
               <motion.div 
                 key={index}
-                className={`flex flex-col ${feature.reverse ? 'md:flex-row-reverse' : 'md:flex-row'} gap-8 items-center`}
+                className={`flex flex-col ${feature.reverse ? 'md:flex-row-reverse' : 'md:flex-row'} gap-12 items-center`}
                 initial={{ opacity: 0, y: 50 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
@@ -83,25 +85,24 @@ const FeaturesPage: React.FC = () => {
                   <img 
                     src={feature.image} 
                     alt={feature.title} 
-                    className="rounded-lg shadow-xl w-full h-auto object-cover"
+                    className="rounded-2xl shadow-2xl w-full h-auto object-cover border-4 border-indigo-200 dark:border-indigo-900"
                     style={{ maxHeight: '400px' }}
                   />
                 </div>
                 <div className="md:w-1/2">
-                  <h2 className="text-3xl font-bold text-gray-900 mb-4">{feature.title}</h2>
-                  <p className="text-lg text-gray-600">{feature.description}</p>
+                  <h2 className={`text-4xl font-extrabold mb-4 tracking-tight font-display ${darkMode ? 'text-indigo-200' : 'text-indigo-700'}`}>{feature.title}</h2>
+                  <p className={`text-xl leading-relaxed ${darkMode ? 'text-gray-200' : 'text-gray-700'} font-sans`}>{feature.description}</p>
                 </div>
               </motion.div>
             ))}
           </div>
         </div>
       </div>
-      
       {/* CTA Section */}
-      <div className="bg-indigo-50 py-16">
+      <div className={`py-16 ${darkMode ? 'bg-dark-secondary' : 'bg-indigo-50'} font-display`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.h2 
-            className="text-3xl font-bold text-gray-900 mb-6"
+            className={`text-4xl font-extrabold mb-6 tracking-tight font-display ${darkMode ? 'text-indigo-200' : 'text-gray-900'}`}
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -110,7 +111,7 @@ const FeaturesPage: React.FC = () => {
             Ready to see Servio in action?
           </motion.h2>
           <motion.p 
-            className="text-xl text-gray-600 mb-8 max-w-3xl mx-auto"
+            className={`text-2xl mb-8 max-w-3xl mx-auto font-medium opacity-90 font-sans ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -125,8 +126,8 @@ const FeaturesPage: React.FC = () => {
             transition={{ duration: 0.5, delay: 0.2 }}
           >
             <a 
-              href="/demo" 
-              className="bg-indigo-600 text-white hover:bg-indigo-700 px-6 py-3 rounded-lg font-medium text-lg shadow-md transition duration-300"
+              href="/contact" 
+              className={`bg-gradient-to-r from-indigo-500 to-purple-600 text-white hover:from-indigo-600 hover:to-purple-700 px-8 py-4 rounded-xl font-bold text-2xl shadow-xl transition duration-300 font-display ${darkMode ? 'ring-2 ring-indigo-900' : ''}`}
             >
               Schedule a Demo
             </a>

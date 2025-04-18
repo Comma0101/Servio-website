@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 import ThemeToggle from './ThemeToggle';
 import { ThemeContext } from '../../context/ThemeContext';
+import ServioLogo from '../brand/ServioLogo';
 
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -13,31 +14,21 @@ const Navbar: React.FC = () => {
   };
 
   return (
-    <nav className={`${darkMode ? 'bg-dark-card text-white' : 'bg-white text-gray-900'} shadow-md fixed w-full z-50 transition-colors duration-300`}>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between h-16">
+    <nav className={`backdrop-blur-md bg-opacity-80 ${darkMode ? 'bg-dark-card text-white border-b border-gray-800' : 'bg-white text-gray-900 border-b border-gray-200'} shadow-xl fixed w-full z-50 transition-colors duration-300`}>
+      <div className="max-w-7xl mx-auto px-4 sm:px-8 lg:px-12">
+        <div className="flex justify-between h-16 items-center">
           <div className="flex items-center">
-            <Link to="/" className="flex-shrink-0 flex items-center">
-              <span className={`text-2xl font-bold ${darkMode ? 'text-indigo-400' : 'text-indigo-600'}`}>Servio</span>
+            <Link to="/" className="flex-shrink-0 flex items-center group" aria-label="Servio home">
+              <ServioLogo size={38} />
             </Link>
           </div>
           
           <div className="hidden md:flex items-center space-x-8">
-            <Link to="/" className={`${darkMode ? 'text-gray-300 hover:text-indigo-400' : 'text-gray-700 hover:text-indigo-600'} px-3 py-2 text-sm font-medium transition-colors duration-300`}>
-              Home
-            </Link>
-            <Link to="/features" className={`${darkMode ? 'text-gray-300 hover:text-indigo-400' : 'text-gray-700 hover:text-indigo-600'} px-3 py-2 text-sm font-medium transition-colors duration-300`}>
-              Features
-            </Link>
-            <Link to="/pricing" className={`${darkMode ? 'text-gray-300 hover:text-indigo-400' : 'text-gray-700 hover:text-indigo-600'} px-3 py-2 text-sm font-medium transition-colors duration-300`}>
-              Pricing
-            </Link>
-            <Link to="/contact" className={`${darkMode ? 'text-gray-300 hover:text-indigo-400' : 'text-gray-700 hover:text-indigo-600'} px-3 py-2 text-sm font-medium transition-colors duration-300`}>
-              Contact
-            </Link>
-            <Link to="/demo" className={`${darkMode ? 'bg-indigo-500' : 'bg-indigo-600'} text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-indigo-700 transition-colors duration-300`}>
-              Try Demo
-            </Link>
+            <Link to="/" className={`px-4 py-2 rounded-lg text-base font-semibold transition-all duration-200 ${darkMode ? 'text-gray-200 hover:text-indigo-400 hover:bg-dark-secondary/60' : 'text-gray-700 hover:text-indigo-600 hover:bg-indigo-50'}`}>Home</Link>
+            <Link to="/features" className={`px-4 py-2 rounded-lg text-base font-semibold transition-all duration-200 ${darkMode ? 'text-gray-200 hover:text-indigo-400 hover:bg-dark-secondary/60' : 'text-gray-700 hover:text-indigo-600 hover:bg-indigo-50'}`}>Features</Link>
+            <Link to="/pricing" className={`px-4 py-2 rounded-lg text-base font-semibold transition-all duration-200 ${darkMode ? 'text-gray-200 hover:text-indigo-400 hover:bg-dark-secondary/60' : 'text-gray-700 hover:text-indigo-600 hover:bg-indigo-50'}`}>Pricing</Link>
+            <Link to="/contact" className={`px-4 py-2 rounded-lg text-base font-semibold transition-all duration-200 ${darkMode ? 'text-gray-200 hover:text-indigo-400 hover:bg-dark-secondary/60' : 'text-gray-700 hover:text-indigo-600 hover:bg-indigo-50'}`}>Contact</Link>
+            <Link to="/demo" className={`px-5 py-2 rounded-lg text-base font-bold shadow-sm transition-all duration-200 ${darkMode ? 'bg-indigo-500 hover:bg-indigo-600 text-white' : 'bg-indigo-600 hover:bg-indigo-700 text-white'}`}>Try Demo</Link>
             <ThemeToggle />
           </div>
           
