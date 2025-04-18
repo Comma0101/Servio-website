@@ -3,6 +3,7 @@ import Layout from '../components/layout/Layout';
 import { motion } from 'framer-motion';
 import { CheckIcon } from '@heroicons/react/24/outline';
 import { ThemeContext } from '../context/ThemeContext';
+import { useNavigate } from 'react-router-dom';
 
 const plans = [
   {
@@ -85,6 +86,7 @@ const faqs = [
 const PricingPage: React.FC = () => {
   const { darkMode } = useContext(ThemeContext);
   const [tab, setTab] = useState<'monthly'|'annual'|'trial'>('trial');
+  const navigate = useNavigate();
   
   return (
     <Layout>
@@ -134,8 +136,8 @@ const PricingPage: React.FC = () => {
                   </ul>
                 </div>
                 <button
-                  className="w-full mt-6 py-3 px-4 rounded-xl font-bold text-xl font-display bg-gradient-to-r from-indigo-500 to-purple-600 text-white hover:from-indigo-600 hover:to-purple-700 ring-2 ring-indigo-900 transition duration-300"
-                  onClick={() => window.location.href = '/contact'}
+                  className="w-full mt-6 py-3 px-4 rounded-xl font-bold text-xl font-display bg-white text-indigo-700 border-2 border-indigo-700 hover:bg-indigo-50 transition duration-300"
+                  onClick={() => navigate('/contact')}
                 >Get Trial</button>
               </div>
             </div>
@@ -160,7 +162,7 @@ const PricingPage: React.FC = () => {
               </div>
               <button
                 className="w-full mt-6 py-3 px-4 rounded-xl font-bold text-xl font-display bg-gradient-to-r from-indigo-500 to-purple-600 text-white hover:from-indigo-600 hover:to-purple-700 ring-2 ring-indigo-900 transition duration-300"
-                onClick={() => window.location.href = '/contact'}
+                onClick={() => navigate('/contact')}
               >Get Trial</button>
             </div>
             {/* Enterprise Card */}
@@ -181,7 +183,7 @@ const PricingPage: React.FC = () => {
               </div>
               <button
                 className="w-full mt-6 py-3 px-4 rounded-xl font-bold text-xl font-display bg-white text-indigo-700 border-2 border-indigo-700 hover:bg-indigo-50 transition duration-300"
-                onClick={() => window.location.href = '/contact'}
+                onClick={() => navigate('/contact')}
               >Contact Sales</button>
             </div>
           </div>
@@ -244,18 +246,18 @@ const PricingPage: React.FC = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.2 }}
           >
-            <a 
-              href="/contact" 
+            <button
               className={`bg-gradient-to-r from-indigo-500 to-purple-600 text-white hover:from-indigo-600 hover:to-purple-700 px-8 py-4 rounded-xl font-bold text-2xl shadow-xl transition duration-300 font-display ${darkMode ? 'ring-2 ring-indigo-900' : ''}`}
+              onClick={() => navigate('/contact')}
             >
               Contact Sales
-            </a>
-            <a 
-              href="/contact" 
+            </button>
+            <button
               className={`bg-white text-indigo-600 border border-indigo-600 hover:bg-indigo-50 px-8 py-4 rounded-xl font-bold text-2xl transition duration-300 font-display ${darkMode ? 'bg-dark-secondary text-indigo-200 border-indigo-900 hover:bg-dark-bg' : ''}`}
+              onClick={() => navigate('/demo')}
             >
               Schedule a Demo
-            </a>
+            </button>
           </motion.div>
         </div>
       </div>
