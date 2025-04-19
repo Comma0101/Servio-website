@@ -159,7 +159,7 @@ const ContactPage: React.FC = () => {
           </div>
         </div>
         {/* FAQ Section */}
-        <div className={`mt-12 rounded-xl p-8 ${darkMode ? 'bg-dark-secondary' : 'bg-gray-50'}`}>
+        <div className={`mt-12 rounded-xl p-8 ${darkMode ? 'bg-dark-secondary' : 'bg-gray-50'}`}> 
           <h2 className={`text-2xl font-semibold mb-4 text-center ${darkMode ? 'text-indigo-200' : ''}`}>Frequently Asked Questions</h2>
           <div className="grid md:grid-cols-3 gap-8">
             {FAQS.map((faq, idx) => (

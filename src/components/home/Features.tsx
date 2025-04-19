@@ -59,6 +59,20 @@ const features = [
   }
 ];
 
+const gridVariants = {
+  hidden: {},
+  show: {
+    transition: {
+      staggerChildren: 0.13,
+    },
+  },
+};
+
+const cardVariants = {
+  hidden: { opacity: 0, y: 10 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.7, ease: 'easeOut' } },
+};
+
 const Features: React.FC = () => {
   const { darkMode } = useContext(ThemeContext);
   
@@ -86,15 +100,19 @@ const Features: React.FC = () => {
           </motion.p>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <motion.div
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+          variants={gridVariants}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true }}
+        >
           {features.map((feature, index) => (
             <motion.div 
               key={index}
               className={`${darkMode ? 'bg-dark-card' : 'bg-white'} rounded-lg shadow-md p-6 hover:shadow-lg transition-all duration-300`}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
+              variants={cardVariants}
+              whileHover={{ scale: 1.03 }}
             >
               <div className={`${darkMode ? 'bg-indigo-900' : 'bg-indigo-100'} rounded-full p-3 inline-block mb-4 ${darkMode ? 'text-indigo-300' : 'text-indigo-600'} transition-colors duration-300`}>
                 {feature.icon}
@@ -103,7 +121,7 @@ const Features: React.FC = () => {
               <p className={`${darkMode ? 'text-gray-300' : 'text-gray-600'} transition-colors duration-300`}>{feature.description}</p>
             </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );

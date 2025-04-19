@@ -91,100 +91,119 @@ const PricingPage: React.FC = () => {
   return (
     <Layout>
       {/* Top Banner */}
-      <div className="w-full bg-gradient-to-r from-indigo-600 to-purple-600 py-10 text-center">
-        <h2 className="text-4xl md:text-5xl font-extrabold text-white mb-2">Try Servio FREE for 3 months</h2>
-        <p className="text-xl md:text-2xl text-indigo-100 font-medium">Book a 15-min call & start free today &rarr;</p>
-      </div>
-      {/* Hero Section */}
-      <div className={`py-14 ${darkMode ? 'bg-dark-bg' : 'bg-black'} text-white font-display relative`}>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <motion.h1 
-            className="text-5xl md:text-6xl font-extrabold mb-4 tracking-tight drop-shadow-xl font-display"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-          >
-            Simple, Transparent Pricing
-          </motion.h1>
-          <motion.p 
-            className="text-2xl max-w-3xl mx-auto mb-10 font-medium opacity-90 font-sans"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-          >
-            Choose the plan that’s right for your réaurant
-          </motion.p>
+      <div className="w-full bg-gradient-to-r from-indigo-600 to-purple-600 py-14 text-center flex flex-col items-center relative shadow-2xl z-10">
+        <h2 className="text-5xl md:text-6xl font-extrabold text-white mb-4 drop-shadow-xl uppercase tracking-tight animate-pulse">
+          Try Servio FREE for 3 months
+        </h2>
+        <p className="text-2xl md:text-3xl text-indigo-100 font-semibold mb-3">
+          No credit card required. Cancel anytime.
+        </p>
+        <div className="inline-flex items-center bg-white/90 dark:bg-indigo-900/90 px-6 py-3 rounded-full shadow-lg border-2 border-indigo-600 mt-2">
+          <span className="text-lg md:text-xl font-bold text-indigo-700 dark:text-indigo-200 mr-3">
+            Trial ends →
+          </span>
+          <span className="text-2xl md:text-3xl font-extrabold text-indigo-700 dark:text-indigo-200">
+            $99/mo
+          </span>
         </div>
+        <p className="text-lg text-indigo-100 mt-4">Book a 15-min call & start free today &rarr;</p>
       </div>
-      {/* Pricing Cards */}
-      <div className={`py-16 ${darkMode ? 'bg-dark-bg' : 'bg-gray-50'} font-sans`}>
+      {/* SVG Curved Divider */}
+      <div className="-mt-1">
+        <svg viewBox="0 0 1440 80" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-16 md:h-20 lg:h-24">
+          <path d="M0 0h1440v40c-200 40-400 40-720 40S200 80 0 40V0z" fill="#111827" fillOpacity="0.96" />
+        </svg>
+      </div>
+      {/* Pricing Section with Gradient BG */}
+      <div className={`relative py-20 ${darkMode ? 'bg-dark-bg' : 'bg-gradient-to-b from-gray-50 via-white to-gray-200'} font-sans`}> 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {/* Starter Column: Stacked Cards */}
+          <div className="text-center mb-16">
+            <motion.h1 
+              className={`text-5xl md:text-6xl font-extrabold mb-4 tracking-tight drop-shadow-xl font-display ${darkMode ? 'text-indigo-100' : 'text-gray-900'}`}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+            >
+              Simple, Transparent Pricing
+            </motion.h1>
+            <motion.p 
+              className={`text-2xl max-w-3xl mx-auto mb-10 font-medium opacity-90 font-sans ${darkMode ? 'text-indigo-200' : 'text-gray-700'}`}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+            >
+              Choose the plan that’s right for your restaurant
+            </motion.p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-10 lg:gap-12">
+            {/* Starter Card */}
             <div className="flex flex-col gap-4 h-full">
-              {/* Starter Plan Card */}
-              <div className={`rounded-2xl shadow-2xl overflow-hidden border-4 border-gray-100 dark:border-gray-800 bg-dark-card p-8 flex flex-col justify-between flex-1`}>
+              <div className={`rounded-2xl shadow-xl hover:shadow-2xl overflow-hidden border ${darkMode ? 'bg-gradient-to-br from-indigo-950 via-indigo-900 to-gray-900 border-indigo-800' : 'bg-white border-gray-200'} p-10 flex flex-col justify-between flex-1 transition-all duration-300`}>
                 <div>
                   <div className="flex items-center gap-2 mb-4">
-                    <span className="text-base font-semibold text-indigo-100">Starter</span>
+                    <span className={`text-base font-semibold ${darkMode ? 'text-indigo-100' : 'text-indigo-700'}`}>Starter</span>
                   </div>
-                  <div className="text-lg text-indigo-100 mb-3">For small restaurants just getting started with AI ordering</div>
-                  <div className="text-3xl font-bold text-white mb-2">Up to 50 orders/mo</div>
-                  <ul className="space-y-2 mb-6 text-indigo-100 list-none pl-0">
+                  <div className={`text-lg mb-3 ${darkMode ? 'text-indigo-200' : 'text-indigo-700'}`}>For small restaurants just getting started with AI ordering</div>
+                  <div className={`text-3xl font-bold mb-2 ${darkMode ? 'text-white' : 'text-gray-900'}`}>Up to 50 orders/mo</div>
+                  <ul className={`space-y-2 mb-6 list-none pl-0 ${darkMode ? 'text-indigo-100' : 'text-gray-700'}`}> 
                     <li>Text & Clover integration</li>
                     <li>Basic analytics</li>
                   </ul>
                 </div>
                 <button
-                  className="w-full mt-6 py-3 px-4 rounded-xl font-bold text-xl font-display bg-white text-indigo-700 border-2 border-indigo-700 hover:bg-indigo-50 transition duration-300"
+                  className={`w-full mt-6 py-3 px-4 rounded-xl font-bold text-xl font-display bg-gradient-to-r from-indigo-500 to-purple-600 text-white border-0 hover:from-indigo-600 hover:to-purple-700 shadow-lg transition duration-300 ${darkMode ? 'ring-2 ring-indigo-400 shadow-indigo-900/40' : ''}`}
                   onClick={() => navigate('/contact')}
                 >Get Trial</button>
               </div>
             </div>
-            {/* Professional Card */}
-            <div className={`rounded-2xl shadow-2xl overflow-hidden border-4 ring-2 ring-indigo-600 relative border-indigo-300 dark:border-indigo-900 bg-dark-card p-8 flex flex-col justify-between`}> 
-              <div>
-                <div className="flex items-center gap-2 mb-4">
-                  <span className="text-base font-semibold text-indigo-100">Professional</span>
-                  <span className="ml-3 px-3 py-1 absolute top-6 right-6 rounded-full bg-indigo-600 text-white text-xs font-bold">Most Popular</span>
+            {/* Professional Card (Highlighted) */}
+            <div className="flex flex-col gap-4 h-full">
+              <div className={`rounded-3xl shadow-2xl hover:shadow-3xl overflow-hidden border-4 ${darkMode ? 'border-indigo-400 bg-gradient-to-br from-indigo-900 via-indigo-800 to-gray-900' : 'border-indigo-500 bg-gradient-to-br from-indigo-50 via-white to-indigo-100'} p-12 flex flex-col justify-between flex-1 relative scale-105 z-10 transition-all duration-300`}>
+                <div>
+                  <div className="flex items-center gap-2 mb-4 relative">
+                    <span className={`text-base font-semibold ${darkMode ? 'text-indigo-100' : 'text-indigo-700'}`}>Professional</span>
+                    <span className={`ml-3 px-4 py-1 absolute -top-6 right-0 rounded-full bg-gradient-to-r from-indigo-500 to-purple-600 text-white text-xs font-bold shadow-lg ${darkMode ? 'ring-2 ring-indigo-300' : ''}`}>Most Popular</span>
+                  </div>
+                  <div className={`text-lg mb-3 ${darkMode ? 'text-indigo-200' : 'text-indigo-700'}`}>Ideal for growing restaurants with higher order volume</div>
+                  <div className={`text-4xl font-extrabold mb-1 animate-pulse ${darkMode ? 'text-white' : 'text-gray-900'}`}>$0 <span className="text-lg font-medium">for 3 months</span></div>
+                  <div className={`text-lg mb-2 font-bold ${darkMode ? 'text-indigo-100' : 'text-indigo-800'}`}>Trial ends → $99/mo</div>
+                  <ul className={`space-y-2 mb-6 list-none pl-0 ${darkMode ? 'text-indigo-100' : 'text-gray-700'}`}> 
+                    <li>Up to 2,000 orders/mo</li>
+                    <li>Text & voice ordering</li>
+                    <li>Square & Clover Integration</li>
+                    <li>Advanced analytics</li>
+                    <li>Automated promotions</li>
+                    <li>Custom response templates</li>
+                  </ul>
                 </div>
-                <div className="text-lg text-indigo-100 mb-3">Ideal for growing restaurants with higher order volume</div>
-                <div className="text-4xl font-extrabold text-white mb-1">$0 <span className="text-lg font-medium">for 3 months</span></div>
-                <div className="text-lg text-indigo-200 mb-2">then $99/mo</div>
-                <ul className="space-y-2 mb-6 text-indigo-100 list-none pl-0">
-                  <li>Up to 2,000 orders/mo</li>
-                  <li>Text & voice ordering</li>
-                  <li>Square & Clover Integration</li>
-                  <li>Advanced analytics</li>
-                  <li>Automated promotions</li>
-                  <li>Custom response templates</li>
-                </ul>
+                <button
+                  className={`w-full mt-6 py-3 px-4 rounded-xl font-bold text-xl font-display bg-gradient-to-r from-indigo-500 to-purple-600 text-white hover:from-indigo-600 hover:to-purple-700 ring-2 shadow-xl transition duration-300 animate-bounce ${darkMode ? 'ring-indigo-400 shadow-indigo-900/40' : 'ring-indigo-500'}`}
+                  onClick={() => navigate('/contact')}
+                >Get Trial</button>
               </div>
-              <button
-                className="w-full mt-6 py-3 px-4 rounded-xl font-bold text-xl font-display bg-gradient-to-r from-indigo-500 to-purple-600 text-white hover:from-indigo-600 hover:to-purple-700 ring-2 ring-indigo-900 transition duration-300"
-                onClick={() => navigate('/contact')}
-              >Get Trial</button>
             </div>
             {/* Enterprise Card */}
-            <div className={`rounded-2xl shadow-2xl overflow-hidden border-4 border-gray-100 dark:border-gray-800 bg-dark-card p-8 flex flex-col justify-between`}>
-              <div>
-                <div className="flex items-center gap-2 mb-4">
-                  <span className="text-base font-semibold text-indigo-100">Enterprise</span>
+            <div className="flex flex-col gap-4 h-full">
+              <div className={`rounded-2xl shadow-xl hover:shadow-2xl overflow-hidden border ${darkMode ? 'bg-gradient-to-br from-indigo-950 via-indigo-900 to-gray-900 border-indigo-800' : 'bg-white border-gray-200'} p-10 flex flex-col justify-between flex-1 transition-all duration-300`}>
+                <div>
+                  <div className="flex items-center gap-2 mb-4">
+                    <span className={`text-base font-semibold ${darkMode ? 'text-indigo-100' : 'text-indigo-700'}`}>Enterprise</span>
+                  </div>
+                  <div className={`text-lg mb-3 ${darkMode ? 'text-indigo-200' : 'text-indigo-700'}`}>For high volume restaurants needing full service solutions</div>
+                  <div className={`text-2xl font-bold mb-2 ${darkMode ? 'text-white' : 'text-gray-900'}`}>Contact us</div>
+                  <ul className={`space-y-2 mb-6 list-none pl-0 ${darkMode ? 'text-indigo-100' : 'text-gray-700'}`}>
+                    <li>All ordering channels</li>
+                    <li>All POS integrations</li>
+                    <li>Custom analytics reports</li>
+                    <li>Detailed performance tracking</li>
+                    <li>Dedicated account manager</li>
+                  </ul>
                 </div>
-                <div className="text-lg text-indigo-100 mb-3">For high volume restaurants needing full service solutions</div>
-                <div className="text-2xl font-bold text-white mb-2">Contact us</div>
-                <ul className="space-y-2 mb-6 text-indigo-100 list-none pl-0">
-                  <li>All ordering channels</li>
-                  <li>All POS integrations</li>
-                  <li>Custom analytics reports</li>
-                  <li>Detailed performance tracking</li>
-                  <li>Dedicated account manager</li>
-                </ul>
+                <button
+                  className={`w-full mt-6 py-3 px-4 rounded-xl font-bold text-xl font-display bg-gradient-to-r from-indigo-500 to-purple-600 text-white border-0 hover:from-indigo-600 hover:to-purple-700 shadow-lg transition duration-300 ${darkMode ? 'ring-2 ring-indigo-400 shadow-indigo-900/40' : ''}`}
+                  onClick={() => navigate('/contact')}
+                >Contact Sales</button>
               </div>
-              <button
-                className="w-full mt-6 py-3 px-4 rounded-xl font-bold text-xl font-display bg-white text-indigo-700 border-2 border-indigo-700 hover:bg-indigo-50 transition duration-300"
-                onClick={() => navigate('/contact')}
-              >Contact Sales</button>
             </div>
           </div>
         </div>

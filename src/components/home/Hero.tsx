@@ -84,7 +84,7 @@ const Hero: React.FC = () => {
               animate={{ opacity: 1 }}
               transition={{ delay: 0.8, duration: 0.8 }}
             >
-              Servio is an advanced conversational AI system that facilitates voice and text ordering through Twilio integration, powered by OpenAI's GPT models.
+              We built Servio so restaurants never lose a call again.” Early access is open: install in minutes, see every order land in your POS, and tell us what to improve. First 3 months are on us.
             </motion.p>
 
             <motion.div 

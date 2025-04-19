@@ -27,11 +27,11 @@ const Testimonials: React.FC = () => {
   const { darkMode } = useContext(ThemeContext);
   
   return (
-    <section className={`py-16 ${darkMode ? 'bg-indigo-900' : 'bg-indigo-50'} transition-colors duration-300`}>
+    <section className={`py-16 ${darkMode ? 'bg-indigo-900' : 'bg-bg-alt'} transition-colors duration-300`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <motion.h2 
-            className={`text-3xl md:text-4xl font-bold ${darkMode ? 'text-white' : 'text-gray-900'} mb-4 transition-colors duration-300`}
+            className={`text-3xl md:text-4xl font-bold ${darkMode ? 'text-white' : 'text-main'} mb-4 transition-colors duration-300`}
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -40,7 +40,7 @@ const Testimonials: React.FC = () => {
             What Our Customers Say
           </motion.h2>
           <motion.p 
-            className={`text-xl ${darkMode ? 'text-indigo-100' : 'text-gray-600'} max-w-3xl mx-auto transition-colors duration-300`}
+            className={`text-xl ${darkMode ? 'text-indigo-100' : 'text-muted'} max-w-3xl mx-auto transition-colors duration-300`}
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -54,26 +54,19 @@ const Testimonials: React.FC = () => {
           {testimonials.map((testimonial, index) => (
             <motion.div 
               key={index}
-              className={`${darkMode ? 'bg-dark-card' : 'bg-white'} rounded-lg shadow-md p-6 relative transition-colors duration-300`}
+              className={`rounded-xl shadow-xl p-8 relative transition-colors duration-300 border ${darkMode ? 'bg-gradient-to-br from-indigo-950 via-indigo-900 to-gray-900 border-indigo-800' : 'bg-white border-gray-100'} flex flex-col h-full`}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
             >
               {/* Quote mark */}
-              <div className={`absolute top-4 right-4 ${darkMode ? 'text-indigo-800' : 'text-indigo-200'} text-5xl font-serif transition-colors duration-300`}>"</div>
-              
-              <p className={`${darkMode ? 'text-gray-300' : 'text-gray-600'} mb-6 relative z-10 transition-colors duration-300`}>{testimonial.quote}</p>
-              
-              <div className="flex items-center">
-                <img 
-                  src={testimonial.image} 
-                  alt={testimonial.name} 
-                  className="w-12 h-12 rounded-full mr-4 object-cover"
-                />
+              <div className={`absolute top-4 right-4 text-5xl font-serif opacity-30 pointer-events-none select-none ${darkMode ? 'text-indigo-300' : 'text-brand-primary'}`}>“</div>
+              <p className={`${darkMode ? 'text-indigo-100' : 'text-main'} mb-6 relative z-10 text-lg font-medium transition-colors duration-300`}>{testimonial.quote}</p>
+              <div className="flex items-center mt-auto pt-4 border-t border-dashed border-indigo-200 dark:border-indigo-800">
                 <div>
-                  <h4 className={`font-semibold ${darkMode ? 'text-white' : 'text-gray-900'} transition-colors duration-300`}>{testimonial.name}</h4>
-                  <p className={`${darkMode ? 'text-gray-400' : 'text-gray-500'} text-sm transition-colors duration-300`}>{testimonial.title}</p>
+                  <h4 className={`font-semibold ${darkMode ? 'text-white' : 'text-main'} transition-colors duration-300`}>{testimonial.name}</h4>
+                  <p className={`${darkMode ? 'text-indigo-300' : 'text-muted'} text-sm transition-colors duration-300`}>{testimonial.title}</p>
                 </div>
               </div>
             </motion.div>
@@ -89,7 +82,7 @@ const Testimonials: React.FC = () => {
         >
           <a 
             href="/features" 
-            className={`${darkMode ? 'text-indigo-200 hover:text-white' : 'text-indigo-600 hover:text-indigo-800'} font-medium transition-colors duration-300`}
+            className={`${darkMode ? 'text-indigo-200 hover:text-white' : 'text-brand-accent hover:text-brand-primary'} font-medium transition-colors duration-300`}
           >
             Read more success stories →
           </a>
